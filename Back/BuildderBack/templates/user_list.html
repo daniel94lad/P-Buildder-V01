@@ -1,0 +1,33 @@
+{% extends "base.html"%}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-sm-6  offset-sm-3 text-center ULog">
+            {% if user_logged %}<h1>User-Logged: {{user_logged}}</h1>{% endif%}
+        </div>
+        <div class="col-sm-6  offset-sm-3">
+            <h1 class="text-center mt-4 mb-3">{{title}}</h1>
+            <form method="GET" action='' class="justify-content-center d-flex">
+                <input type="text" name="q" placeholder='Search user' value='{{ request.GET.q}}'/>
+                <input type="submit" value="Search"/>
+            </form>
+            <div class="row justify-content-center">
+                {% for  user in user_list %}
+                    <div class="col-sm-12">
+                        <div class="card align-items-center text-center m-2 w-100 ">
+                            {% if user.photo %}
+                                <img src='{{ user.photo.url}}' class="card-img-top ImgProfile" />
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">User<small> - {{ user.joined }}</small></h5>
+                                <p class="card-text">Name: {{user.first_name}} {{user.last_name}}</p>
+                                <a href='{{ user.get_absolute_url }}' class="btn btn-primary">User details</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

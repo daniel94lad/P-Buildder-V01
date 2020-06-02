@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+
+
+{% block head %}{{instance.user_id}} | {{block.super}}{% endblock head%}
+
+{% block content%}
+<div class="row d-flex justify-content-center text-center">
+    <div class="col-12">
+        {% if instance.photo %}
+            <img src='{{ instance.photo.url}}' class="img-fluid ImgDetailPro" />
+        {% endif %}
+    </div>
+    <div class="col-12">
+        <h1>{{instance.first_name}} {{instance.last_name}}</h1>
+        <p>{{instance.email}}</p>
+    </div>
+    <div class= "col-6">
+        <hr/>
+        <h1> //////////////////// </h1>  
+        <small>{{instance.joined}}</small>
+    </div>
+</div>
+
+{% endblock content %}
